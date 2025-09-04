@@ -22,7 +22,7 @@ class LassoRegressor(object):
         self.w: np.ndarray = np.random.randn(num_features, 1)   # the params of the model
         self.regularizer_coeff: float = regularizer_coeff
 
-    def predict(self: RidgeRegressorType,
+    def predict(self: LassoRegressorType,
                 X: np.ndarray) -> np.ndarray:
         """
             A method to calculate predictions using lasso regression.
@@ -31,7 +31,7 @@ class LassoRegressor(object):
         """
         return None
 
-    def loss(self: RidgeRegressorType,
+    def loss(self: LassoRegressorType,
              Y_hat: np.ndarray,
              Y_gt: np.ndarray) -> float:
         """
@@ -42,7 +42,7 @@ class LassoRegressor(object):
         """
         return None
 
-    def grad(self: RidgeRegressorType,
+    def grad(self: LassoRegressorType,
              X: np.ndarray,
              Y_gt: np.ndarray) -> np.ndarray:
         """
