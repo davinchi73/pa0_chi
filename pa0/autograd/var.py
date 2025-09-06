@@ -1,24 +1,24 @@
 # SYSTEM IMPORTS
 from typing import Type
 from expr import Expression, ExpressionType
+from const import Constant
 
-
-class Constant(Expression):
-    def __init__(self: ExpressionType, val: float) -> None:
-            self.val = float(val)
+class Variable(Expression):
+    def __init__(self: ExpressionType) -> None:
+        pass
 
     def differentiate(self: ExpressionType) -> ExpressionType:
-        return Constant(0.0)
+        return Constant(1.0)
 
     def eval(self: ExpressionType,
              x: float) -> float:
-        return self.val
+        return Constant(x)
 
     def deepcopy(self: ExpressionType) -> ExpressionType:
-        return Constant(self.val)
+        return Variable()
     
     def __str__(self):
-        return str(self.val)
+        return "x"
     
     def __repr__(self):
-        return f"Constant:({self.val})"
+        return f"Variable: x"
