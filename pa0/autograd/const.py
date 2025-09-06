@@ -7,6 +7,12 @@ class Constant(Expression):
     def __init__(self: ExpressionType, val: float) -> None:
             self.val = float(val)
 
+    def __str__(self):
+        return str(self.val)
+    
+    def __repr__(self):
+        return f"Constant:({self.val})"
+    
     def differentiate(self: ExpressionType) -> ExpressionType:
         return Constant(0.0)
 
@@ -16,9 +22,3 @@ class Constant(Expression):
 
     def deepcopy(self: ExpressionType) -> ExpressionType:
         return Constant(self.val)
-    
-    def __str__(self):
-        return str(self.val)
-    
-    def __repr__(self):
-        return f"Constant:({self.val})"

@@ -7,6 +7,12 @@ class Variable(Expression):
     def __init__(self: ExpressionType) -> None:
         pass
 
+    def __str__(self):
+        return "x"
+    
+    def __repr__(self):
+        return f"Variable: x"
+    
     def differentiate(self: ExpressionType) -> ExpressionType:
         return Constant(1.0)
 
@@ -16,9 +22,3 @@ class Variable(Expression):
 
     def deepcopy(self: ExpressionType) -> ExpressionType:
         return Variable()
-    
-    def __str__(self):
-        return "x"
-    
-    def __repr__(self):
-        return f"Variable: x"
