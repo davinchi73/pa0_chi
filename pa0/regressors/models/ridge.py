@@ -57,5 +57,9 @@ class RidgeRegressor(object):
             @param Y_gt: the matrix of ground truth. Has shape (num_features, 1)
             @return np.ndarray: the gradient of the ridge loss function with respect to 'self.w'. Has shape (num_features, 1)
         """
-        return None
+        # 2*X.T * (Y_hat - Y_gt) + 2(self.regularizer_coeff)(self.w)
+        Y_hat = self.predict(X)
+        XT2 = (2) * (X.T)
+        left = () * ()
+        return 
 
