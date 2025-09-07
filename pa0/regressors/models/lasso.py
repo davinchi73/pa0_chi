@@ -1,17 +1,9 @@
-# SYSTEM IMPORTS
+# IMPORTS
 from typing import Type
 import numpy as np
 
-
-# PYTHON PROJECT IMPORTS
-
-
 # TYPES DECLARED IN THIS MODULE
 LassoRegressorType = Type["LassoRegressor"]
-
-
-# CONSTANTS
-
 
 
 class LassoRegressor(object):
@@ -29,7 +21,7 @@ class LassoRegressor(object):
             @param X: the matrix of input examples. Has shape (num_examples, num_features))
             @return np.ndarray: the matrix of predictions. Has shape (num_examples, 1)
         """
-        return None
+        return X @ self.w
 
     def loss(self: LassoRegressorType,
              Y_hat: np.ndarray,
@@ -40,7 +32,12 @@ class LassoRegressor(object):
             @param Y_gt: the matrix of ground truth. Has shape (num_examples, 1)
             @return float: the lasso regression loss function evaluated at Y_hat, Y_gt
         """
-        return None
+        # w = (Y_hat - Y_gt) + self.regularizer_coeff(sum of abs value weights, w)
+        # (Y_hat - Y_gt) = sum of all y^-ygt's squared (least squares)
+        ls = (np.sum((Y_hat - Y_gt) ** 2))
+        lamb = self.regularizer_coeff
+        sum_abs_w = (np.sum(np.abs(self.w)))
+        return float((ls) + ((lamb) * (sum_abs_w)))
 
     def grad(self: LassoRegressorType,
              X: np.ndarray,
@@ -51,5 +48,9 @@ class LassoRegressor(object):
             @param Y_gt: the matrix of ground truth. Has shape (num_features, 1)
             @return np.ndarray: the gradient of the lasso loss function with respect to 'self.w'. Has shape (num_features, 1)
         """
-        return None
-
+        # 2*X.T * (Y_hat - Y_gt) + 2(self.regularizer_coeff)(self.w) --> w sign function
+        Y_hat = self.predict(X)
+        XT2 = (2) * (X.T)
+        left = (XT2) @ (Y_hat - Y_gt)
+        right = (self.regularizer_coeff) * (np.sign(self.w))
+        return (left) + (right)

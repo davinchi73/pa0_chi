@@ -1,17 +1,9 @@
-# SYSTEM IMPORTS
+# IMPORTS
 from typing import Type
 import numpy as np
 
-
-# PYTHON PROJECT IMPORTS
-
-
 # TYPES DECLARED IN THIS MODULE
 RidgeRegressorType = Type["RidgeRegressorType"]
-
-
-# CONSTANTS
-
 
 
 class RidgeRegressor(object):
@@ -60,6 +52,6 @@ class RidgeRegressor(object):
         # 2*X.T * (Y_hat - Y_gt) + 2(self.regularizer_coeff)(self.w)
         Y_hat = self.predict(X)
         XT2 = (2) * (X.T)
-        left = () * ()
-        return 
-
+        left = (XT2) @ (Y_hat - Y_gt)
+        right = (2) * (self.regularizer_coeff) * (self.w)
+        return left + right
