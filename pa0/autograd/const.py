@@ -8,10 +8,12 @@ class Constant(Expression):
             self.val = float(val)
 
     def __str__(self):
-        return str(self.val)
+        val = str(self.val)
+        return f"({val})"
     
     def __repr__(self):
-        return f"Constant:({self.val})"
+        val = str(self.val)
+        return f"(Constant({val}))"
     
     def differentiate(self: ExpressionType) -> ExpressionType:
         return Constant(0.0)

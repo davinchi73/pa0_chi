@@ -11,7 +11,7 @@ class Variable(Expression):
         return "x"
     
     def __repr__(self):
-        return f"Variable: x"
+        return f"Variable()"
     
     def differentiate(self: ExpressionType) -> ExpressionType:
         return Constant(1.0)

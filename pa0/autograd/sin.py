@@ -15,7 +15,7 @@ class Sin(Expression):
     
     def __repr__(self):
         arg = str(self.arg)
-        return f"Sin expression: (Sin({arg}))"
+        return f"(Sin({repr(arg)}))"
     
     def differentiate(self: ExpressionType) -> ExpressionType:
         ddx = self.arg.differentiate()

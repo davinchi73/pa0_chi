@@ -16,7 +16,7 @@ class Cos(Expression):
     
     def __repr__(self):
         arg = str(self.arg)
-        return f"Cos expression: (Cos({arg}))"
+        return f"(Cos({repr(arg)}))"
     
     def differentiate(self: ExpressionType) -> ExpressionType:
         from sin import Sin

@@ -19,8 +19,8 @@ class Power(Expression):
     def __repr__(self):
         base = str(self.base)
         exp = str(self.exp)
-        
-        return f"Base: {base}, Exponent: {exp}"
+
+        return f"(Base({base}))^(Exp({exp}))"
     
     def differentiate(self: ExpressionType) -> ExpressionType:
         new_exp = self.exp - 1.0

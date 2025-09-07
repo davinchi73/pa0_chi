@@ -14,7 +14,7 @@ class Exp(Expression):
     
     def __repr__(self):
         arg = str(self.arg)
-        return f"exp expression: Exp({arg})"
+        return f"Exp({repr(arg)})"
 
     def differentiate(self: ExpressionType) -> ExpressionType:
         ddx = self.arg.differentiate()

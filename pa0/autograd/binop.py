@@ -41,16 +41,12 @@ class BinaryOp(Expression):
     def __str__(self):
         l = str(self.lhs)
         r = str(self.rhs)
-        op = str(self.op)
+        op = str(self.op) 
 
         return f"{l} {op} {r}"
 
     def __repr__(self):
-        l = str(self.lhs)
-        r = str(self.rhs)
-        op = str(self.op)
-
-        return f"Left hand side: {l}, Operation: {op}, Right hand side: {r}"
+        return f"({repr(self)})"
 
     def differentiate(self) -> ExpressionType:
 

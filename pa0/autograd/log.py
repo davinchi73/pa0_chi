@@ -14,7 +14,7 @@ class Log(Expression):
     
     def __repr__(self):
         arg = str(self.arg)
-        return f"log expression: Log({arg})"
+        return f"Log({repr(arg)})"
 
     def differentiate(self: ExpressionType) -> ExpressionType:
         ddx = self.arg.differentiate()
