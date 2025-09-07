@@ -73,7 +73,23 @@ class BinaryOp(Expression):
             raise ValueError("ERROR: unknown op [{0}]".format(self))     
     
     def eval(self, x):
-        pass
+        right = self.rhs.eval(x)
+        left = self.lhs.eval(x)
+
+        if self.op == Op.ADD:
+            return left + right
+        
+        elif self.op == Op.SUB:
+            return left - right
+
+        elif self.op == Op.MUL:
+            return left * right
+            
+        elif self.op == Op.DIV:
+            return left / right
+
+        else:
+            raise ValueError("ERROR: unknown op [{0}]".format(self))
     
     def deepcopy(self) -> ExpressionType:
-        return BinaryOp(self.rhs, self.op, self.lhs)
+        return BinaryOp(self.lhs.deepcopy(), self.op, self.rhs.deepcopy())

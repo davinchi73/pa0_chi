@@ -27,4 +27,4 @@ class Power(Expression):
         return self.base.eval ** self.exp
 
     def deepcopy(self: ExpressionType) -> ExpressionType:
-        return Power(self.base, self.exp)
+        return Power(self.base.deepcopy(), self.exp)
