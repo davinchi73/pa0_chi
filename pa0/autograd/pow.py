@@ -8,7 +8,7 @@ from const import Constant
 class Power(Expression):
     def __init__(self: ExpressionType, base: Expression, exp: float) -> None:
             self.base = base
-            self.exp = exp
+            self.exp = float(exp)
 
     def __str__(self):
         base = str(self.base)
