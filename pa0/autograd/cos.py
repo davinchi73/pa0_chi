@@ -11,10 +11,12 @@ class Cos(Expression):
             self.val = float(val)
 
     def __str__(self):
-        return str(self.val)
+        arg = str(self.arg)
+        return f"(cos({arg}))"
     
     def __repr__(self):
-        return f"Constant:({self.val})"
+        arg = str(self.arg)
+        return f"Cos expression: (Cos({arg}))"
     
     def differentiate(self: ExpressionType) -> ExpressionType:
         from sin import Sin

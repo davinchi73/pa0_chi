@@ -10,10 +10,12 @@ class Sin(Expression):
             self.arg = arg
 
     def __str__(self):
-        return str(self.val)
+        arg = str(self.arg)
+        return f"(sin({arg}))"
     
     def __repr__(self):
-        return f"Constant:({self.val})"
+        arg = str(self.arg)
+        return f"Sin expression: (Sin({arg}))"
     
     def differentiate(self: ExpressionType) -> ExpressionType:
         ddx = self.arg.differentiate()
