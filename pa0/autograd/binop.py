@@ -48,31 +48,32 @@ class BinaryOp(Expression):
 
         from pow import Power #(self: ExpressionType, base: Expression, exp: float)
 
+        rhsddx = self.rhs.differentiate()
+        lhsddx = self.lhs.differentiate()
+
         if self.op == Op.ADD:
-            rhsddx = self.rhs.differentiate()
-            lhsddx = self.lhs.differentiate()
             return BinaryOp(lhsddx, Op.ADD, rhsddx)
         
         elif self.op == Op.SUB:
-            rhsddx = self.rhs.differentiate()
-            lhsddx = self.lhs.differentiate()
             return BinaryOp(lhsddx, Op.SUB, rhsddx)
         
         elif self.op == Op.MUL:
-            rhsddx = self.rhs.differentiate()
-            lhsddx = self.lhs.differentiate()
-
             right_term = BinaryOp(self.lhs, Op.MUL, rhsddx)
             left_term = BinaryOp(lhsddx, Op.MUL, self.rhs)
             return BinaryOp(left_term, Op.ADD, right_term)
         
         elif self.op == Op.DIV:
+            lhTOP = BinaryOp(self.rhs, Op.MUL, lhsddx)
+            rhTOP = BinaryOp(self.lhs, Op.MUL, rhsddx)
+            denominator = Power(self.rhs, 2.0)
+            numerator = BinaryOp(lhTOP, Op.SUB, rhTOP)
+            return BinaryOp(numerator, Op.DIV, denominator)
 
         else:
             raise ValueError("ERROR: unknown op [{0}]".format(self))     
     
     def eval(self, x):
-        
+        pass
     
     def deepcopy(self) -> ExpressionType:
-        
+        return BinaryOp(self.rhs, self.op, self.lhs)
