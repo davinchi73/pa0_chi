@@ -1,5 +1,4 @@
-# SYSTEM IMPORTS
-from typing import Type
+# IMPORTS
 from expr import Expression, ExpressionType
 from binop import BinaryOp, Op
 from const import Constant

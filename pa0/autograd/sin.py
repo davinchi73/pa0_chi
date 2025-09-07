@@ -1,5 +1,4 @@
-# SYSTEM IMPORTS
-from typing import Type
+# IMPORTS
 from expr import Expression, ExpressionType
 from cos import Cos
 from binop import BinaryOp, Op

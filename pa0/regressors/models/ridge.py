@@ -19,7 +19,7 @@ class RidgeRegressor(object):
                  num_features: int,             # the number of features each example has
                  regularizer_coeff: float = 1   # the coefficient for the l-1 regularization term in the loss function
                  ) -> None:
-        self.w: np.ndarray = np.random.randn(num_features, 1)   # the params of the model
+        self.w: np.ndarray = np.random.randn(num_features, 1)   # the params of the model 
         self.regularizer_coeff: float = regularizer_coeff
 
     def predict(self: RidgeRegressorType,
@@ -29,7 +29,8 @@ class RidgeRegressor(object):
             @param X: the matrix of input examples. Has shape (num_examples, num_features))
             @return np.ndarray: the matrix of predictions. Has shape (num_examples, 1)
         """
-        return None
+        # y^ = Xw --> vector of predictions
+        return X @ self.w
 
     def loss(self: RidgeRegressorType,
              Y_hat: np.ndarray,
@@ -40,7 +41,12 @@ class RidgeRegressor(object):
             @param Y_gt: the matrix of ground truth. Has shape (num_examples, 1)
             @return float: the ridge regression loss function evaluated at Y_hat, Y_gt
         """
-        return None
+        # w = (Y_hat - Y_gt) + self.regularizer_coeff(sum of squared weights, w)
+        # (Y_hat - Y_gt) = sum of all y^-ygt's squared (least squares)
+        ls = (np.sum((Y_hat - Y_gt) ** 2))
+        lamb = self.regularizer_coeff
+        sum_sq_w = np.sum(np.square(self.w))
+        return float((ls) + (lamb*(sum_sq_w)))
 
     def grad(self: RidgeRegressorType,
              X: np.ndarray,
