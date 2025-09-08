@@ -1,6 +1,6 @@
 # IMPORTS
-from .expr import Expression, ExpressionType
-from .const import Constant
+from expr import Expression, ExpressionType
+from const import Constant
 
 class Variable(Expression):
     def __init__(self: ExpressionType) -> None:
@@ -13,11 +13,11 @@ class Variable(Expression):
         return f"Variable()"
     
     def differentiate(self: ExpressionType) -> ExpressionType:
-        return 1.0
+        return Constant(1.0)
 
     def eval(self: ExpressionType,
              x: float) -> float:
-        return Constant(x)
+        return x
 
     def deepcopy(self: ExpressionType) -> ExpressionType:
         return Variable()

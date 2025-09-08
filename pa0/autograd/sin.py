@@ -1,7 +1,7 @@
 # IMPORTS
-from .expr import Expression, ExpressionType
-from .cos import Cos
-from .binop import BinaryOp, Op
+from expr import Expression, ExpressionType
+from cos import Cos
+from binop import BinaryOp, Op
 import math
 
 class Sin(Expression):
