@@ -21,7 +21,7 @@ class Log(Expression):
 
     def eval(self: ExpressionType,
              x: float) -> float:
-        return math.ln(self.arg.eval(x))
+        return math.log(self.arg.eval(x))
 
     def deepcopy(self: ExpressionType) -> ExpressionType:
         return Log(self.arg.deepcopy())
