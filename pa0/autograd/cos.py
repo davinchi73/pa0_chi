@@ -1,7 +1,7 @@
 # IMPORTS
 from .expr import Expression, ExpressionType
 from .const import Constant
-from .binop import BinaryOp, Op
+from .binop import BinOp, Op
 import math
 
 
@@ -22,12 +22,12 @@ class Cos(Expression):
 
         ddx = self.arg.differentiate()
         const = Constant(-1.0)
-        comb = BinaryOp(ddx, Op.MUL, Sin(self.arg))
-        return BinaryOp(const, Op.MUL, comb)
+        comb = BinOp(ddx, Op.MUL, Sin(self.arg))
+        return BinOp(const, Op.MUL, comb)
 
     def eval(self: ExpressionType,
              x: float) -> float:
-        return math.cos(self.arg.eval(x))
+        return float(math.cos(self.arg.eval(x)))
 
     def deepcopy(self: ExpressionType) -> ExpressionType:
         return Cos(self.arg.deepcopy())

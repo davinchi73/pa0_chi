@@ -1,7 +1,7 @@
 # IMPORTS
 from .expr import Expression, ExpressionType
 from .cos import Cos
-from .binop import BinaryOp, Op
+from .binop import BinOp, Op
 import math
 
 class Sin(Expression):
@@ -18,11 +18,11 @@ class Sin(Expression):
     
     def differentiate(self: ExpressionType) -> ExpressionType:
         ddx = self.arg.differentiate()
-        return BinaryOp(ddx, Op.MUL, Cos(self.arg))
+        return BinOp(ddx, Op.MUL, Cos(self.arg))
 
     def eval(self: ExpressionType,
              x: float) -> float:
-        return math.sin(self.arg.eval(x))
+        return float(math.sin(self.arg.eval(x)))
 
     def deepcopy(self: ExpressionType) -> ExpressionType:
         return Sin(self.arg.deepcopy())

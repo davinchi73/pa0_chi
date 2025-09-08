@@ -31,7 +31,7 @@ class Op(Enum):
         return self.__str__()
 
 # BinaryOp
-class BinaryOp(Expression):
+class BinOp(Expression):
 
     def __init__(self: ExpressionType, lhs: Expression, op: Op, rhs: Expression):
         self.lhs = lhs
@@ -56,22 +56,22 @@ class BinaryOp(Expression):
         lhsddx = self.lhs.differentiate()
 
         if self.op == Op.ADD:
-            return BinaryOp(lhsddx, Op.ADD, rhsddx)
+            return BinOp(lhsddx, Op.ADD, rhsddx)
         
         elif self.op == Op.SUB:
-            return BinaryOp(lhsddx, Op.SUB, rhsddx)
+            return BinOp(lhsddx, Op.SUB, rhsddx)
         
         elif self.op == Op.MUL:
-            right_term = BinaryOp(self.lhs, Op.MUL, rhsddx)
-            left_term = BinaryOp(lhsddx, Op.MUL, self.rhs)
-            return BinaryOp(left_term, Op.ADD, right_term)
+            right_term = BinOp(self.lhs, Op.MUL, rhsddx)
+            left_term = BinOp(lhsddx, Op.MUL, self.rhs)
+            return BinOp(left_term, Op.ADD, right_term)
         
         elif self.op == Op.DIV:
-            lhTOP = BinaryOp(self.rhs, Op.MUL, lhsddx)
-            rhTOP = BinaryOp(self.lhs, Op.MUL, rhsddx)
+            lhTOP = BinOp(self.rhs, Op.MUL, lhsddx)
+            rhTOP = BinOp(self.lhs, Op.MUL, rhsddx)
             denominator = Power(self.rhs, 2.0)
-            numerator = BinaryOp(lhTOP, Op.SUB, rhTOP)
-            return BinaryOp(numerator, Op.DIV, denominator)
+            numerator = BinOp(lhTOP, Op.SUB, rhTOP)
+            return BinOp(numerator, Op.DIV, denominator)
 
         else:
             raise ValueError("ERROR: unknown op [{0}]".format(self))     
@@ -96,4 +96,4 @@ class BinaryOp(Expression):
             raise ValueError("ERROR: unknown op [{0}]".format(self))
     
     def deepcopy(self) -> ExpressionType:
-        return BinaryOp(self.lhs.deepcopy(), self.op, self.rhs.deepcopy())
+        return BinOp(self.lhs.deepcopy(), self.op, self.rhs.deepcopy())
