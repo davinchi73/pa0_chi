@@ -1,5 +1,5 @@
 # IMPORTS
-from expr import Expression, ExpressionType
+from .expr import Expression, ExpressionType
 
 
 class Constant(Expression):

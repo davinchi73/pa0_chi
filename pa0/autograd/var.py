@@ -1,6 +1,6 @@
 # IMPORTS
-from expr import Expression, ExpressionType
-from const import Constant
+from .expr import Expression, ExpressionType
+from .const import Constant
 
 class Variable(Expression):
     def __init__(self: ExpressionType) -> None:

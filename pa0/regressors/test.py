@@ -1,8 +1,4 @@
-"""
-Adapted from train.py from CS 523 @ BU
-"""
-
-# IMPORTS
+# SYSTEM IMPORTS
 from typing import Type, Tuple
 import pickle as pkl
 import numpy as np
@@ -10,7 +6,7 @@ from copy import deepcopy
 import matplotlib.pyplot as plt
 import os
 
-# set seed
+
 np.random.seed(12345)
 
 
@@ -93,31 +89,44 @@ def train(X_train: np.ndarray,
 
 
 def main() -> None:
+    # annotated bc I am bad at reading code
+
+    # get data from local dir folder
     cd = os.path.abspath(os.path.dirname(__file__))
     data_dir = os.path.join(cd, "data")
     data_file = os.path.join(data_dir, "data.pkl")
 
+    # open and load data.pkl
     data = None
     with open(data_file, "rb") as f:
         data = pkl.load(f)
 
+    # split the data into its training sets x, y and testing sets x, y
     X_train = data["x_train"]
     Y_train = data["y_train"].reshape(-1, 1)
     X_val = data["x_test"]
     Y_val = data["y_test"].reshape(-1, 1)
 
+    # print
     print(f"train shapes: {X_train.shape} -> {Y_train.shape}")
     print(f"val shapes: {X_val.shape} -> {Y_val.shape}")
 
+    # creates a single set of random initial weights
     init_w: np.ndarray = np.random.randn(X_train.shape[1], 1)
+
+    # creates a lasso model instance and sets its weights to init_w
     m_lasso: object = LassoRegressor(X_train.shape[1])
     m_lasso.w = init_w.copy()
 
+    # creates a ridge model instance and sets its weights to init_w
     m_ridge: object = RidgeRegressor(X_train.shape[1])
     m_ridge.w = init_w.copy()
 
+    # uses the training method to train each model
     train(X_train, Y_train, X_val, Y_val, m_lasso)
     train(X_train, Y_train, X_val, Y_val, m_ridge)
+
+    # plots everything
 
     # Visualize the learned weight via Ridge Regression and Lasso Regression
     fig, ax = plt.subplots(nrows=1, ncols=2)
@@ -126,16 +135,14 @@ def main() -> None:
     ax[0].set_title('Ridge Regression')
     ax[0].set_ylabel('w')
 
-
     ax[1].stem(list(range(X_train.shape[1])), m_lasso.w)
     ax[1].grid()
     ax[1].set_title('Lasso Regression')
     ax[1].set_ylabel('w')
-
+    
+    # show the plot
     plt.show()
 
 
 if __name__ == "__main__":
     main()
-
-

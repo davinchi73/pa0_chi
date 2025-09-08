@@ -1,6 +1,6 @@
 # IMPORTS
-from expr import Expression, ExpressionType
-from binop import BinaryOp, Op
+from .expr import Expression, ExpressionType
+from .binop import BinaryOp, Op
 import math
 
 class Exp(Expression):
