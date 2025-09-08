@@ -1,7 +1,7 @@
 # IMPORTS
-from expr import Expression, ExpressionType
-from binop import BinaryOp, Op
-from const import Constant
+from .expr import Expression, ExpressionType
+from .binop import BinaryOp, Op
+from .const import Constant
 
 
 class Power(Expression):

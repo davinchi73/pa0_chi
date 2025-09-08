@@ -1,7 +1,7 @@
 # IMPORTS
 from typing import Type
 from enum import Enum
-from expr import Expression, ExpressionType
+from .expr import Expression, ExpressionType
 
 
 OpType = Type["Op"]
