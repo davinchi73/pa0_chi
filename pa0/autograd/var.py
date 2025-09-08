@@ -13,7 +13,7 @@ class Variable(Expression):
         return f"Variable()"
     
     def differentiate(self: ExpressionType) -> ExpressionType:
-        return Constant(1.0)
+        return 1.0
 
     def eval(self: ExpressionType,
              x: float) -> float:
