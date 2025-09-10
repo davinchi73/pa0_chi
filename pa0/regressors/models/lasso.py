@@ -37,7 +37,7 @@ class LassoRegressor(object):
         ls = (np.sum((Y_hat - Y_gt) ** 2))
         lamb = self.regularizer_coeff
         sum_abs_w = (np.sum(np.abs(self.w)))
-        return float((ls) + ((lamb) * (sum_abs_w)))
+        return float((ls) + (lamb*(sum_abs_w)))
 
     def grad(self: LassoRegressorType,
              X: np.ndarray,
