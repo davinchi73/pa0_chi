@@ -1,6 +1,6 @@
 # IMPORTS
 from .expr import Expression, ExpressionType
-from .binop import BinOp, Op
+from .binop import BinaryOp, Op
 from .const import Constant
 
 
@@ -23,9 +23,9 @@ class Power(Expression):
     
     def differentiate(self: ExpressionType) -> ExpressionType:
         new_exp = self.exp - 1.0
-        lhs = BinOp(Constant(self.exp), Op.MUL, Power(self.base, new_exp))
+        lhs = BinaryOp(Constant(self.exp), Op.MUL, Power(self.base, new_exp))
         rhs = self.base.differentiate()
-        return BinOp(lhs, Op.MUL, rhs)
+        return BinaryOp(lhs, Op.MUL, rhs)
 
     def eval(self: ExpressionType,
              x: float) -> float:

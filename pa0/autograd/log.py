@@ -1,6 +1,6 @@
 # IMPORTS
 from .expr import Expression, ExpressionType
-from .binop import BinOp, Op
+from .binop import BinaryOp, Op
 import math
 
 class Log(Expression):
@@ -17,7 +17,7 @@ class Log(Expression):
 
     def differentiate(self: ExpressionType) -> ExpressionType:
         ddx = self.arg.differentiate()
-        return BinOp(ddx, Op.DIV, self.arg)
+        return BinaryOp(ddx, Op.DIV, self.arg)
 
     def eval(self: ExpressionType,
              x: float) -> float:

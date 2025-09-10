@@ -48,9 +48,9 @@ class LassoRegressor(object):
             @param Y_gt: the matrix of ground truth. Has shape (num_features, 1)
             @return np.ndarray: the gradient of the lasso loss function with respect to 'self.w'. Has shape (num_features, 1)
         """
-        # 2*X.T * (Y_hat - Y_gt) + 2(self.regularizer_coeff)(self.w) --> w sign function
+        # 2*X.T * (Y_hat - Y_gt) + (self.regularizer_coeff)(self.w) --> w/ sign function
         Y_hat = self.predict(X)
-        XT2 = (2) * (X.T)
+        XT2 = (2.0) * (X.T)
         left = (XT2) @ (Y_hat - Y_gt)
         right = (self.regularizer_coeff) * (np.sign(self.w))
-        return (left) + (right)
+        return left + right
